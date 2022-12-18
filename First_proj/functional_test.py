@@ -1,4 +1,5 @@
 from selenium import webdriver
+from selenium.webdriver.common.by import By
 import unittest
 
 
@@ -11,30 +12,36 @@ class BasicInstallTest(unittest.TestCase):
 
         self.browser = webdriver.Chrome(path_to_driver, options=options)
 
+    # Quit browser after testing
     def tearDown(self):
         self.browser.quit()
 
     def test_home_page_title(self):
-        self.browser.get('http://127.0.0.1:8080')
+        self.browser.get('http://127.0.0.1:8000')
 
         self.assertIn('My first site', self.browser.title)
-        # self.fail('Finish the test!')
 
     def test_home_page_header(self):
-        browser = self.browser.get('http://127.0.0.1:8080')
-        header = browser.find_elements_by_tag_name('h1')[0]
+        browser = self.browser.get('http://127.0.0.1:8000')
+        header = self.browser.find_element(By.TAG_NAME, 'h1')
 
-        self.assertIn('My first site', header)
-        # self.fail('Finish the test!')
+        self.assertIn('first site', header.text)
+
+    def test_home_page_blog(self):
+        self.browser.get('http://127.0.0.1:8000')
+        article_list = self.browser.find_element(By.CLASS_NAME ,'article-list')
+        self.assertTrue(article_list)
+
+    def test_home_page_articles_look_correct(self):
+        self.browser.get('http://127.0.0.1:8000')
+        article_title = self.browser.find_element(By.CLASS_NAME, 'article-title')
+        aritcle_summary - self.browser.find_element(By.CLASS_NAME, 'article-summary')
+        self.assertTrue(article_title)
+        self.assertTrue(aritcle_summary)
 
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
-
-
 
 
 
