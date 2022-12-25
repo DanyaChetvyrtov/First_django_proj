@@ -25,7 +25,7 @@ class BasicInstallTest(unittest.TestCase):
         browser = self.browser.get('http://127.0.0.1:8000')
         header = self.browser.find_element(By.TAG_NAME, 'h1')
 
-        self.assertIn('first site', header.text)
+        self.assertIn('Danil Semenov', header.text)
 
     def test_home_page_blog(self):
         self.browser.get('http://127.0.0.1:8000')
@@ -35,7 +35,7 @@ class BasicInstallTest(unittest.TestCase):
     def test_home_page_articles_look_correct(self):
         self.browser.get('http://127.0.0.1:8000')
         article_title = self.browser.find_element(By.CLASS_NAME, 'article-title')
-        aritcle_summary - self.browser.find_element(By.CLASS_NAME, 'article-summary')
+        aritcle_summary = self.browser.find_element(By.CLASS_NAME, 'article-summary')
         self.assertTrue(article_title)
         self.assertTrue(aritcle_summary)
 
