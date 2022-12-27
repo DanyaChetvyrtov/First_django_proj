@@ -6,5 +6,9 @@ class Article(models.Model):
     summary = models.CharField(max_length=255)
     full_text = models.TextField()
     category = models.CharField(max_length=255)
-    pubdate = models.DateField()
+    pubdate = models.DateTimeField()
+    slug = models.CharField(max_length=255, unique=True)
     # is_published = models.BooleanField()#TODO
+    
+    def __str__(self):
+        return self.title
